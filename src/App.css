@@ -1,12 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-/* *::-webkit-scrollbar {
-  display: none;
-} */
-
 body {
   background-image: linear-gradient(#122f65, #3665bc);
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .todo-container {
