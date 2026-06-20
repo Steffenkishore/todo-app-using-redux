@@ -3,16 +3,21 @@
 }
 
 .empty-message {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   color: #777;
   font-size: 16px;
-  padding: 20px 0;
 }
 
 .todo-list {
   list-style: none;
+  max-height: 45vh;
   padding: 0;
   margin: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .todo-item {
@@ -70,19 +75,27 @@
 }
 
 .delete-btn {
-  border: none;
-  padding: 8px 14px;
+  border: 1px solid #d1cfcf;
+  padding-top: 3px;
   border-radius: 6px;
-  background-color: #1c1a1a;
+  background-color: #ffffff;
   color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.delete-btn:hover {
-  background-color: #dc2626;
+.del-icon {
+  color: #000000;
+  font-size: 20px;
 }
 
+.delete-btn:hover {
+  background-color: #3f3c3c;
+}
+
+.delete-btn:hover .del-icon {
+  color: #ffffff;
+}
 
 .my-task-con-1 {
   display: flex;
@@ -133,13 +146,9 @@
 
 @media (max-width: 600px) {
   .todo-item {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 12px;
-  }
-
-  .delete-btn {
-    width: 100%;
   }
 
   .my-task-con-1 {
@@ -155,5 +164,14 @@
 
   .filter-btn {
     flex: 1;
+  }
+
+  .empty-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 16px;
   }
 }

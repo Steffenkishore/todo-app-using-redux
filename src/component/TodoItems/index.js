@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./index.css";
 import { changeStatus, delTodo, filterTask } from "../../action/todoAction";
+import { MdDelete } from "react-icons/md";
+
 
 const TodoItems = ({ task, taskStatus, taskDel }) => {
   const taskList = useSelector((state) => state.todos.tasks);
@@ -21,48 +23,49 @@ const TodoItems = ({ task, taskStatus, taskDel }) => {
 
   return (
     <div className="todo-list-container">
+      <div className="my-task-con-1">
+        <h3>My Tasks</h3>
+
+        <div className="filter-btn-con">
+          <button
+            className={
+              filterVal === "all" ? "filter-btn active-filter" : "filter-btn"
+            }
+            onClick={() => dispatch(filterTask("all"))}
+          >
+            All
+          </button>
+
+          <button
+            className={
+              filterVal === "active" ? "filter-btn active-filter" : "filter-btn"
+            }
+            onClick={() => dispatch(filterTask("active"))}
+          >
+            Active
+          </button>
+
+          <button
+            className={
+              filterVal === "completed"
+                ? "filter-btn active-filter"
+                : "filter-btn"
+            }
+            onClick={() => dispatch(filterTask("completed"))}
+          >
+            Completed
+          </button>
+        </div>
+      </div>
       {filteredTaskList.length === 0 ? (
-        <p className="empty-message">No Tasks Available</p>
+        <div className="empty-message">
+          <h3 style={{ marginRight: "5px" }}>No tasks yet !</h3>
+          <p>
+            Add a task to get started
+          </p>
+        </div>
       ) : (
         <div>
-          <div className="my-task-con-1">
-            <h3>My Tasks</h3>
-
-            <div className="filter-btn-con">
-              <button
-                className={
-                  filterVal === "all"
-                    ? "filter-btn active-filter"
-                    : "filter-btn"
-                }
-                onClick={() => dispatch(filterTask("all"))}
-              >
-                All
-              </button>
-
-              <button
-                className={
-                  filterVal === "active"
-                    ? "filter-btn active-filter"
-                    : "filter-btn"
-                }
-                onClick={() => dispatch(filterTask("active"))}
-              >
-                Active
-              </button>
-
-              <button
-                className={
-                  filterVal === "completed"
-                    ? "filter-btn active-filter"
-                    : "filter-btn"
-                }
-                onClick={() => dispatch(filterTask("completed"))}
-              >
-                Completed
-              </button>
-            </div>
-          </div>
           <ul className="todo-list">
             {filteredTaskList.map((e) => (
               <li
@@ -91,7 +94,7 @@ const TodoItems = ({ task, taskStatus, taskDel }) => {
                   className="delete-btn"
                   onClick={() => dispatch(delTodo(e.id))}
                 >
-                  Delete
+                  <MdDelete className="del-icon" />
                 </button>
               </li>
             ))}
