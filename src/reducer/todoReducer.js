@@ -1,24 +1,32 @@
 import { loadTodos } from "../utils/localStorage";
+import {createSlice} from "@reduxjs/toolkit";
 
 let initialState = loadTodos();
 
-export const todoReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_TODO":
+const todoSlice = createSlice({
+  name: "todo",
+  initialState: initialState,
+  reducers: {
+    addTodo: (state, action) => {
       return { ...state, tasks: [...state.tasks, action.payload] };
-    case "DEL_TODO":
+    },
+    delTodo: (state, action) => {
       const filtered = state.tasks.filter((e) => e.id !== action.payload);
       return { ...state, tasks: filtered };
-    case "CHANGE_STATUS":
+    },
+    changeStatus: (state, action) => {
       const updatedTasks = state.tasks.map((e) =>
         e.id === action.payload.id
           ? { ...e, completed: action.payload.check }
           : e,
       );
       return { ...state, tasks: updatedTasks };
-    case "FILTER_TASK":
+    },
+    filterTask: (state, action) => {
       return { ...state, filter: action.payload };
-    default:
-      return state;
-  }
-};
+    },
+  },
+});
+
+export const { addTodo, delTodo, changeStatus, filterTask } = todoSlice.actions;
+export const todoReducer = todoSlice.reducer;

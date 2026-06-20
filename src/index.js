@@ -13,8 +13,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore({
   reducer: {
     todos: todoReducer,
-  }
-})
+  },
+});
 
 store.subscribe(() => {
   saveTodos(store.getState().todos);

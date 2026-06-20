@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./index.css";
-import { changeStatus, delTodo, filterTask } from "../../action/todoAction";
+import { changeStatus, delTodo, filterTask } from "../../reducer/todoReducer";
 import { MdDelete } from "react-icons/md";
 
 
@@ -79,7 +79,7 @@ const TodoItems = ({ task, taskStatus, taskDel }) => {
                     checked={e.completed}
                     className="task-checkbox"
                     onChange={(event) =>
-                      dispatch(changeStatus(event.target.checked, e.id))
+                      dispatch(changeStatus({check:event.target.checked, id:e.id}))
                     }
                   />
 

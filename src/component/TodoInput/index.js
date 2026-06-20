@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { v4 as uuvid } from "uuid";
 import { useDispatch } from "react-redux";
 import "./index.css";
-import { addTodo } from "../../action/todoAction";
+import { addTodo } from "../../reducer/todoReducer";
 
 const TodoInput = () => {
   const dispatch = useDispatch();
